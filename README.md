@@ -7,7 +7,10 @@ Resources used:
 - Creating the initial project skeleton, and dockerization https://aicha-fatrah.medium.com/dockerize-a-symfony-project-nginx-php-fpm-and-mariadb-f46fe9b190bb
 - Offidical documentation pages for PHP 8-8.2 and Symfony (Limited experience with both at time of writing, but ive got time so why not practice)
 
-Notes:
+Packages used:
+ - Symfony
+ - Doctrine
+ - Twig
 
 
 1. Описание на задачата: създаване на шаблон за търсене, показване и добавяне на
