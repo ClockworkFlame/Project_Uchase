@@ -1,6 +1,12 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
-app_lucky_number:
+home:
     path: /
     controller: App\Controller\Home::index
+add:
+    path: /add
+    controller: App\Controller\Home::add
+search:
+    path: /search
+    controller: App\Controller\Home::search

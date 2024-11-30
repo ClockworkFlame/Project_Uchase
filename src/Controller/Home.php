@@ -13,16 +13,18 @@ use App\Entity\Pets;
  */
 class Home extends AbstractController
 {
-    public function index(EntityManagerInterface $entityManager): Response
+    public function index(): Response
     {
-        var_dump($product);
+        return $this->render('/pets/home.html.twig');
+    }
 
-        // phpinfo();exit;
-        return $this->render('/pets/add_pet.html.twig');
+    public function add(EntityManagerInterface $entityManager): Response
+    {
     }
 
     public function search(EntityManagerInterface $entityManager): Response
     {
-        $product = $entityManager->getRepository(Pets::class)->find(1);
+        // $product = $entityManager->getRepository(Pets::class)->find(1);
+        // var_dump($product->getName());
     }
 }

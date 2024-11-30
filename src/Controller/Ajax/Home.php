@@ -2,10 +2,10 @@
 
 namespace App\Controller\Ajax;
 
-use App\Controller\Controller as BaseController;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 
-class Home extends BaseController
+class Home extends AbstractController
 {
     public function index()
     {
