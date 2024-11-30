@@ -13,7 +13,7 @@ class Pets
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned"=true}, unique=true, length=10)
      */
     private $id;
 
@@ -28,12 +28,12 @@ class Pets
     private $info;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned"=true}, length=10)
      */
     private $created;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="integer", options={"unsigned"=true}, length=10)
      */
     private $modified;
 

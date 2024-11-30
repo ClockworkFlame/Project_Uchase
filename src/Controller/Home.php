@@ -2,33 +2,27 @@
 
 namespace App\Controller;
 
-use App\Controller\Controller as BaseController;
-use Symfony\Component\HttpFoundation\Response as Response;
-use Doctrine\DBAL\DriverManager;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Doctrine\ORM\EntityManagerInterface;
+
+use App\Entity\Pets;
 
 /**
  * Just one controller for this small list app
  */
-class Home extends BaseController
+class Home extends AbstractController
 {
-    public function index(): Response
+    public function index(EntityManagerInterface $entityManager): Response
     {
-        $connectionParams = [
-            'dbname' => 'tutorial',
-            'user' => 'admin',
-            'password' => 'admin',
-            'host' => 'localhost',
-            'driver' => 'pdo_mysql',
-        ];
-        $conn = DriverManager::getConnection($connectionParams);
-        var_dump($conn);
+        var_dump($product);
 
         // phpinfo();exit;
         return $this->render('/pets/add_pet.html.twig');
     }
 
-    public function search(): Response
+    public function search(EntityManagerInterface $entityManager): Response
     {
-
+        $product = $entityManager->getRepository(Pets::class)->find(1);
     }
 }

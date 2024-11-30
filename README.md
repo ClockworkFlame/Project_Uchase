@@ -1,11 +1,15 @@
 Installation:
-- Insert DB credentials and port inside docker-compose.yaml
-- Run "docker-compose build" followed by "docker-compose up"
+- DB cretentials are located at docker-compose.yaml and on line 30 of ".env". Update if need be.
+- Run "docker-compose build" followed by "docker-compose up" to setup the images and containers.
+- Doctrine handles DB creation and mapping, so we need to run these commands in order, inside the PHP docker container terminal (Idk if I should automate it in the PHP.Dockerfile or not)
+    - php bin/console doctrine:database:create
+    - php bin/console make:migration
+    - php bin/console doctrine:migrations:migrate
 - Navigate to http://127.0.0.1:8080/
 
-Resources used:
+Guides used:
 - Creating the initial project skeleton, and dockerization https://aicha-fatrah.medium.com/dockerize-a-symfony-project-nginx-php-fpm-and-mariadb-f46fe9b190bb
-- Offidical documentation pages for PHP 8-8.2 and Symfony (Limited experience with both at time of writing, but ive got time so why not practice)
+- Offidical documentation pages for PHP 8-8.2, Symfony and Docker (Limited experience at time of writing, but ive got time so why not practice)
 
 Packages used:
  - Symfony
