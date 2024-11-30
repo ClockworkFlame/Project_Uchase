@@ -47,6 +47,15 @@ class AnimalTypeRepository extends ServiceEntityRepository
         }
     }
 
+    public function getTypes()
+    {
+        return $this->getEntityManager()
+            ->createQuery(
+                'SELECT a_t.name FROM App:AnimalType a_t ORDER BY a_t.name ASC'
+            )
+            ->getResult();
+    }
+
     // /**
     //  * @return AnimalType[] Returns an array of AnimalType objects
     //  */
