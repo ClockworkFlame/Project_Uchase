@@ -2,13 +2,15 @@
 
 namespace App\Entity;
 
-use App\Repository\PetsRepository;
+use App\Repository\AnimalTypeRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass=PetsRepository::class)
+ * @ORM\Entity(repositoryClass=AnimalTypeRepository::class)
  */
-class Pets
+class AnimalType
 {
     /**
      * @ORM\Id
@@ -23,11 +25,6 @@ class Pets
     private $name;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $info;
-
-    /**
      * @ORM\Column(type="integer", options={"unsigned"=true}, length=10)
      */
     private $created;
@@ -38,10 +35,14 @@ class Pets
     private $modified;
 
     /**
-     * @ORM\ManyToOne(targetEntity=AnimalType::class, inversedBy="pet")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\OneToMany(targetEntity=Pets::class, mappedBy="animalType")
      */
-    private $animalType;
+    private $pet;
+
+    public function __construct()
+    {
+        $this->pet = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -56,18 +57,6 @@ class Pets
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getInfo(): ?string
-    {
-        return $this->info;
-    }
-
-    public function setInfo(?string $info): self
-    {
-        $this->info = $info;
 
         return $this;
     }
@@ -96,14 +85,32 @@ class Pets
         return $this;
     }
 
-    public function getAnimalType(): ?AnimalType
+    /**
+     * @return Collection<int, Pets>
+     */
+    public function getPet(): Collection
     {
-        return $this->animalType;
+        return $this->pet;
     }
 
-    public function setAnimalType(?AnimalType $animalType): self
+    public function addPet(Pets $pet): self
     {
-        $this->animalType = $animalType;
+        if (!$this->pet->contains($pet)) {
+            $this->pet[] = $pet;
+            $pet->setAnimalType($this);
+        }
+
+        return $this;
+    }
+
+    public function removePet(Pets $pet): self
+    {
+        if ($this->pet->removeElement($pet)) {
+            // set the owning side to null (unless already changed)
+            if ($pet->getAnimalType() === $this) {
+                $pet->setAnimalType(null);
+            }
+        }
 
         return $this;
     }
