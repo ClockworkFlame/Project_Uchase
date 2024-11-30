@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=AnimalTypeRepository::class)
+ * @ORM\HasLifecycleCallbacks
  */
 class AnimalType
 {
@@ -113,5 +114,19 @@ class AnimalType
         }
 
         return $this;
+    }
+
+    /**
+     * @ORM\PrePersist
+     * @ORM\PreUpdate
+     */
+    public function updateTimestamp()
+    {
+        $date = new \DateTime();
+
+        $this->setModified($date->format('U'));
+        if($this->getCreated() == null){
+            $this->setCreated($date->format('U'));
+        }
     }
 }
