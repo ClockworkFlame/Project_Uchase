@@ -26,6 +26,10 @@ Commands to remember:
 - php bin/console doctrine:migrations:migrate
 - php bin/console doctrine:migrations:diff
 
+ToDo:
+- Find some sort of caching solution so pages to take a lifetime to load
+- React
+
 External help used:
 - Creating the initial project skeleton, and dockerization https://aicha-fatrah.medium.com/dockerize-a-symfony-project-nginx-php-fpm-and-mariadb-f46fe9b190bb
 - Offidical documentation pages for PHP 8-8.2, Symfony and Docker (Limited experience at time of writing, but ive got time so why not practice)
