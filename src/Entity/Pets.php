@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PetsRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PetsRepository::class)
@@ -20,27 +21,36 @@ class Pets
 
     /**
      * @ORM\Column(type="string", length=45)
+     * @Assert\NotBlank
+     * @Assert\Type(string)
      */
     private $name;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
+     * @Assert\Type(string)
      */
     private $info;
 
     /**
      * @ORM\Column(type="integer", options={"unsigned"=true}, length=10)
+     * @Assert\NotBlank
+     * @Assert\Type(integer)
      */
     private $created;
 
     /**
      * @ORM\Column(type="integer", options={"unsigned"=true}, length=10)
+     * @Assert\NotBlank
+     * @Assert\Type(integer)
      */
     private $modified;
 
     /**
      * @ORM\ManyToOne(targetEntity=AnimalType::class, inversedBy="pet")
      * @ORM\JoinColumn(nullable=false)
+     * @Assert\NotBlank
+     * @Assert\Type(string)
      */
     private $animalType;
 

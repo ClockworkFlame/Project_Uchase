@@ -2,9 +2,10 @@
 
 namespace App\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 use App\Entity\Pets;
 use App\Entity\AnimalType as AnimalType;
@@ -20,21 +21,38 @@ class Home extends AbstractController
         return $this->render('/pets/home.html.twig');
     }
 
-    public function add(EntityManagerInterface $entityManager): Response
+    public function add(EntityManagerInterface $entityManager, Request $request): Response
     {
-        // creates a task object and initializes some data for this example
         $pet = new Pets();
-        // $pet->setName('Write a pet name');
-        // $pet->setName('Write a pet name');
-        // $pet->setDueDate(new \DateTimeImmutable('tomorrow'));
 
         // Fetch animal types for use in form builder
-        $animalTypes = $entityManager
-        ->getRepository(AnimalType::class)
-        ->getTypes();
-        $animalTypes = array_column($animalTypes, 'name');
-
+        $animalTypes = $entityManager->getRepository(AnimalType::class)->findAll();
         $form = $this->createForm(Pets_Form::class, $pet, ['animalTypes' => $animalTypes]);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $pet = $form->getData();
+
+            try{
+                $entityManager->persist($pet);
+                $entityManager->flush();
+            }
+            catch(\Exception $e){
+                $this->addFlash(
+                    'warning',
+                    'Something went wrong!'
+                );
+                error_log($e->getMessage());
+                return $this->redirectToRoute('add');
+            }
+
+            $this->addFlash(
+                'success',
+                'Pet was submitted!'
+            );
+            
+            return $this->redirectToRoute('home');
+        }
 
         return $this->render('/pets/add_pet.html.twig', [
             'form' => $form->createView(),
