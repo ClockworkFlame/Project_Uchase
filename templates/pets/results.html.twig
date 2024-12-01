@@ -1,1 +1,20 @@
 {% extends "/base.html.twig" %}
+
+{% block body %}
+    <table id="pets">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Information</th>
+            <th>Date submitted</th>
+        </tr>
+        {% for item in items %}
+            <tr class="{{ item.getName() == searched_name ? 'name_match' : '' }}">
+                <td>{{ item.getName() }}</td>
+                <td>{{ item.getAnimalType().getName() }}</td>
+                <td>{{ item.getInfo() }}</td>
+                <td>{{ item.getCreated()|date('d-m-Y H:m:s') }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+{% endblock %}

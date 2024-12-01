@@ -13,6 +13,12 @@
         {% endblock %}
     </head>
     <body>
+        <ul>
+            <li><a href="{{ url('home') }}">Home</a></li>
+            <li><a href="{{ url('add') }}">Add</a></li>
+            <li><a href="{{ url('search') }}">Search</a></li>
+        </ul>
+
         {# Display Flash message #}
         {% for label, messages in app.flashes %}
             {% for message in messages %}
@@ -22,7 +28,6 @@
             {% endfor %}
         {% endfor %}
 
-
-        {% block body %} ADD PET {% endblock %}
+        {% block body %}{% endblock %}
     </body>
 </html>

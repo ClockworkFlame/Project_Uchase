@@ -8,6 +8,8 @@ use Doctrine\ORM\OptimisticLockException;
 use Doctrine\ORM\ORMException;
 use Doctrine\Persistence\ManagerRegistry;
 
+use App\Entity\AnimalType;
+
 /**
  * @extends ServiceEntityRepository<Pets>
  *
@@ -47,22 +49,37 @@ class PetsRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Pets[] Returns an array of Pets objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * For use on the search page.
+     * @return Pets[] Returns an array of Pets objects
+     */
+    public function forSearchForm(string $name = null, AnimalType $animaltype = null): array
     {
-        return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
-            ->getQuery()
-            ->getResult()
-        ;
+        $where = [];
+        $params = [];
+        if($name !== null) {
+            $where[] = 'p.name = :name';
+            $params['name'] = $name;
+        }
+        if($animaltype !== null) {
+            $where[] = 'p.animalType = :animalType';
+            $params['animalType'] = $animaltype;
+        }
+
+        if(empty($params)) {
+            return [];
+        }
+
+        $query = $this->_em->createQuery('SELECT p 
+            FROM App\Entity\Pets p 
+            WHERE ' . implode(' AND ', $where) . '
+            ORDER BY p.created DESC
+        ');
+        $query->setParameters($params);
+        $results = $query->getResult();
+
+        return $results;
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Pets
