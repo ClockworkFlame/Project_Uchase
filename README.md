@@ -15,8 +15,9 @@ Packages used:
 - Symfony
 - Symfony Asset
 - Symfony Form
-- Symfony Validator (Checks if form data conforms to Entity format)
-- Symfony http-foundation (for flash notification)
+- Symfony Var-dumper (this is so nice)
+- Symfony Validator (Checks if form data conforms to Entity structure)
+- Symfony http-foundation (for flash notifications)
 - Doctrine
 - Twig
 
@@ -29,6 +30,8 @@ External help used:
 - Creating the initial project skeleton, and dockerization https://aicha-fatrah.medium.com/dockerize-a-symfony-project-nginx-php-fpm-and-mariadb-f46fe9b190bb
 - Offidical documentation pages for PHP 8-8.2, Symfony and Docker (Limited experience at time of writing, but ive got time so why not practice)
 - Random stylesheet+html menu I found https://codepen.io/WhisnuYs/pen/XWdpdGP
+- A lot of stackoverflow
+- My cat
 
 1. Описание на задачата: създаване на шаблон за търсене, показване и добавяне на
 домашни любимци. Заданието се състои от 3 части(секции):
