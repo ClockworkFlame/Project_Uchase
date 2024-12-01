@@ -13,6 +13,14 @@
         {% endblock %}
     </head>
     <body>
+        {# Display Flash message #}
+        {% for label, message in app.flashes %}
+            <div class="flash-{{ label }}">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
         {% block body %} ADD PET {% endblock %}
     </body>
 </html>
