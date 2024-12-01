@@ -81,6 +81,15 @@ class PetsRepository extends ServiceEntityRepository
         return $results;
     }
 
+    /**
+     * Custom findAll that orders by descending, supposedly its a good practice to overwrite doctrine search functions
+     * @return Pets[]
+     */
+    public function findAll(): array
+    {
+        return $this->findBy(array(), array('created' => 'DESC'));
+    }
+
     /*
     public function findOneBySomeField($value): ?Pets
     {
