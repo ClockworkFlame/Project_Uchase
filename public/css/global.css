@@ -9,7 +9,6 @@
 }
 
 body {
-  background: #272727;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -22,7 +21,7 @@ body {
 }
 
 .navMenu a {
-  color: #f6f4e6;
+  color: lightskyblue;
   text-decoration: none;
   font-size: 1.2em;
   text-transform: uppercase;
@@ -34,13 +33,13 @@ body {
 }
 
 .navMenu a:hover {
-  color: #fddb3a;
+  color: blue;
 }
 
 .navMenu .dot {
   width: 6px;
   height: 6px;
-  background: #fddb3a;
+  background: blue;
   border-radius: 50%;
   opacity: 0;
   -webkit-transform: translateX(30px);
@@ -79,4 +78,14 @@ body {
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
   opacity: 1;
+}
+
+.flash-notice {
+  color: black;
+}
+.flash-success {
+  color: greenyellow;
+}
+.flash-warning {
+  color: red;
 }
