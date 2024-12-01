@@ -15,6 +15,7 @@ Packages used:
 - Symfony
 - Symfony Asset
 - Symfony Form
+- Symfony Validator (Checks if form data conforms to Entity format)
 - Symfony http-foundation (for flash notification)
 - Doctrine
 - Twig
