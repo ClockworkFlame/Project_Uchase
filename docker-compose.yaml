@@ -22,7 +22,7 @@ services:
     depends_on: 
       - database
   database:
-    image: mariadb:latest
+    image: mariadb:11.4.2
     container_name: database
     environment:
       MYSQL_ROOT_PASSWORD: 'admin'
