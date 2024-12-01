@@ -27,7 +27,7 @@ Commands to remember:
 - php bin/console doctrine:migrations:diff
 
 ToDo:
-- Find some sort of caching solution so pages to take a lifetime to load
+- Find some sort of caching solution so pages dont take a lifetime to load
 - React
 
 External help used:
