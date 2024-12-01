@@ -31,6 +31,7 @@ class AddPet extends AbstractType
                 'choice_label' => 'name',
                 'expanded' => false,
                 'multiple' => false,
+                'placeholder' => 'Please choose',
             ])
             ->add('save', SubmitType::class, ['label' => 'Submit']);
     }

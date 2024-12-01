@@ -89,7 +89,7 @@ input[type=submit]:hover {
   background-color: #45a049;
 }
 
-.container {
+form, .container  {
   border-radius: 5px;
   background-color: #f2f2f2;
   padding: 20px;
@@ -120,4 +120,8 @@ input[type=submit]:hover {
     width: 100%;
     margin-top: 0;
   }
+}
+
+button {
+  margin-top:15px;
 }
